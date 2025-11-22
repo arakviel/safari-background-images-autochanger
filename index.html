@@ -204,7 +204,7 @@
 
                     const now = Date.now()
                     const timeElapsed = now - parseInt(this.lastChangeTime)
-                    const intervalMs = this.config.changeIntervalMinutes * 60 * 1000 // 30 minutes
+                    const intervalMs = (this.config?.changeIntervalMinutes || 30) * 60 * 1000 // 30 minutes
 
                     if (timeElapsed >= intervalMs) {
                         this.nextImage()
