@@ -118,6 +118,11 @@
                         return process.env.UNSPLASH_ACCESS_KEY
                     }
 
+                    // For GitHub Pages with GitHub Actions, check for injected environment variable
+                    if (window.UNSPLASH_ACCESS_KEY) {
+                        return window.UNSPLASH_ACCESS_KEY
+                    }
+
                     return null
                 }
 
