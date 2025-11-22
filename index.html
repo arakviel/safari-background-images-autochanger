@@ -68,7 +68,7 @@
         <script>
             class SafariBackground {
                 constructor() {
-                    this.unsplashAccessKey = '' // Set from GitHub Secrets or meta tag in production
+                    this.unsplashAccessKey = 'sOtYUya2BmlLxB977Bw1vEQhxtA2k_taf4eJMuV_1SI' // Production API key
                     this.currentImageIndex = 0
                     this.images = []
                     this.changeInterval = 30 // minutes
@@ -93,41 +93,17 @@
                 }
 
                 async loadConfiguration() {
-                    // Production-ready configuration loading
-                    // 1. From meta tag (for GitHub Pages with secrets injection)
-                    // 2. From environment variable (for server-side rendering)
-                    // 3. Fallback to error message (no user prompts in production)
-
-                    this.unsplashAccessKey = this.getApiKey()
-
-                    if (!this.unsplashAccessKey) {
-                        this.showApiKeyPrompt()
-                        return
-                    }
+                    // Configuration is set directly in constructor
+                    // No additional setup needed
                 }
 
                 getApiKey() {
-                    // Check for API key in various places
-                    const metaTag = document.querySelector('meta[name="unsplash-access-key"]')
-                    if (metaTag) {
-                        return metaTag.getAttribute('content')
-                    }
-
-                    // For production, check for GitHub environment variable
-                    if (typeof process !== 'undefined' && process.env && process.env.UNSPLASH_ACCESS_KEY) {
-                        return process.env.UNSPLASH_ACCESS_KEY
-                    }
-
-                    // For GitHub Pages with GitHub Actions, check for injected environment variable
-                    if (window.UNSPLASH_ACCESS_KEY) {
-                        return window.UNSPLASH_ACCESS_KEY
-                    }
-
-                    return null
+                    // API key is set directly in constructor for simplicity
+                    return this.unsplashAccessKey
                 }
 
                 showApiKeyPrompt() {
-                    this.showError('Please set up your Unsplash API key in GitHub Secrets or add it to the HTML file.')
+                    this.showError('Please set up your Unsplash API key.')
                 }
 
                 async fetchImages() {
